@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: 'Inter',
+        inter: 'Inter',
+        prompt: 'Prompt',
+        adaptive: ['Inter', 'Prompt'],
       }
     },
   },
