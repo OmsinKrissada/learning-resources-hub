@@ -1,6 +1,3 @@
-export const prerender = true;
-export const csr = false;
-
 export async function load({ fetch }) {
 	const res = await fetch('https://krissada.com/api/items.json');
 	const topicObject = await res.json() as { [key: string]: { url: string, comment?: string; }[]; };
