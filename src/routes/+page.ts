@@ -1,17 +1,23 @@
-export const prerender = true;
-export const ssr = true;
+import type { Config } from '@sveltejs/adapter-vercel';
+
+export const config: Config = {
+	isr: {
+		expiration: false,
+		bypassToken: 'plsrerendercuziaddedsomething'
+	}
+};
 
 export async function load({ fetch }) {
 	const res = await fetch('https://krissada.com/api/items.json');
-	const topicObject = await res.json() as { [key: string]: { url: string, comment?: string; }[]; };
+	const topicObject = (await res.json()) as { [key: string]: { url: string; comment?: string }[] };
 	const topicList = Object.entries(topicObject);
 	// for (const [topic, item] of list) {
 
 	// }
 
 	const topicPromises = topicList.map(async ([topic, items]) => {
-		const itemPromises = items.map(async item => {
-			const res = (await fetch(`https://krissada.com/getmetatags.php?url=${item.url}`));
+		const itemPromises = items.map(async (item) => {
+			const res = await fetch(`https://krissada.com/getmetatags.php?url=${item.url}`);
 			const metaTags = await res.json();
 			return {
 				...item,
@@ -20,7 +26,10 @@ export async function load({ fetch }) {
 				thumbnailUrl: metaTags['og:image']
 			};
 		});
-		return [topic, await Promise.all(itemPromises)] as [string, Awaited<typeof itemPromises[0]>[]];
+		return [topic, await Promise.all(itemPromises)] as [
+			string,
+			Awaited<(typeof itemPromises)[0]>[]
+		];
 	});
 
 	return { items: await Promise.all(topicPromises) };

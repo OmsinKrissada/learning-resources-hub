@@ -5,12 +5,12 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-			  sans: 'Poppins',
-			  inter: 'Inter',
-			  prompt: 'Prompt',
-			  adaptive: ['Poppins', 'Noto Sans Thai'],
+				sans: 'Poppins',
+				inter: 'Inter',
+				prompt: 'Prompt',
+				adaptive: ['Poppins', 'Noto Sans Thai']
 			}
-		  },
+		}
 	},
 
 	plugins: []
