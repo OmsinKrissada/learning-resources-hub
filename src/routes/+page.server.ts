@@ -1,15 +1,16 @@
 import type { Config } from '@sveltejs/adapter-vercel';
+import { BYPASS_TOKEN } from '$env/static/private';
 
 export const config: Config = {
 	isr: {
 		expiration: false,
-		bypassToken: 'plsrerendercuziaddedsomething'
+		bypassToken: BYPASS_TOKEN
 	}
 };
 
 export async function load({ fetch }) {
 	const res = await fetch('https://krissada.com/api/items.json');
-	const topicObject = (await res.json()) as { [key: string]: { url: string; comment?: string }[] };
+	const topicObject = (await res.json()) as { [key: string]: { url: string; comment?: string; }[]; };
 	const topicList = Object.entries(topicObject);
 	// for (const [topic, item] of list) {
 
