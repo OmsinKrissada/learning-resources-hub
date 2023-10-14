@@ -1,4 +1,6 @@
 <script lang="ts">
+	import youtubeIcon from '$lib/assets/youtube-icon-3.svg';
+	import playlistIcon from '$lib/assets/playlist-icon.svg';
 	// export let type: 'video' | 'playlist' | 'channel';
 	// export let tags: string[];
 	export let title: string;
@@ -7,14 +9,6 @@
 	export let comment: string | undefined;
 
 	let type = url.includes('/watch') ? 'video' : 'playlist';
-
-	// onMount(async () => {
-	// 	// if (props.type !== 'video') {
-	// 	const metaTags = (await axios.get(`https://krissada.com/getmetatags.php?url=${url}`)).data;
-	// 	title = metaTags['og:title'];
-	// 	thumbnailUrl = metaTags['og:image'];
-	// 	// }
-	// });
 
 	function videoIdFromUrl(url: string) {
 		return url.split(/\?v=|&v=/g)[1];
@@ -25,34 +19,16 @@
 
 <a
 	href={url}
-	class="relative dark:text-white rounded-lg lg:hover:scale-105 lg:transition-transform"
+	class="relative p-4 flex items-center text-white rounded-lg bg-gradient-to-r from-transparent to-zinc-800/80 hover:to-teal-800/30 border border-zinc-700 hover:border-teal-500 lg:hover:scale-100 lg:transition-colors"
 >
-	<!-- <div
-		class="w-10 -translate-x-5 bg-rose-900 dark:bg-rose-400 font-bold text-center text-white dark:text-black shadow-sm shadow-black">
-		{{ badgeKey[type] }}
-	</div> -->
+	<img
+		src={thumbnailUrl}
+		alt=""
+		class="h-16 rounded-lg aspect-video object-cover shadow-lg shadow-zinc-700"
+	/>
+	<!-- <div class="w-60" /> -->
 
-	<div>
-		<!-- {#if type === 'video'}
-			<iframe
-				src={`https://www.youtube.com/embed/${videoIdFromUrl(url)}`}
-				class="w-full aspect-video rounded-lg lg:hover:scale-105 transition-transform"
-				title="YouTube video player"
-				frameborder="0"
-				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen
-			/>
-		{:else if type === 'channel'}
-			<a href={url} target="_blank">
-				<img src={thumbnailUrl} alt="" class="inline h-16 mx-auto shadow rounded-full" />
-				<h3 class="inline ml-4 font-medium">{{ title }}</h3>
-			</a>
-		{:else} -->
-		<img src={thumbnailUrl} alt="" class="mx-auto shadow rounded-lg aspect-video object-cover" />
-		<!-- {/if} -->
-	</div>
-
-	<div class="absolute -inset-1 overflow-hidden">
+	<!-- <div class="absolute -inset-1 overflow-hidden">
 		{#if type === 'video'}
 			<div
 				class="absolute top-6 right-6 translate-x-1/2 pr-12 pl-8 bg-emerald-600 font-medium text-sm text-white rotate-45 shadow-sm shadow-black"
@@ -66,28 +42,42 @@
 				PLAYLIST
 			</div>
 		{/if}
-	</div>
+	</div> -->
 
-	{#if type !== 'channel'}
-		<h3 class="mt-2 font-medium">{title}</h3>
-	{/if}
+	<div class="h-full ml-4 text-sm text-neutral-200">
+		{#if type !== 'channel'}
+			<div class="flex items-start">
+				{#if type === 'video'}
+					<h3 class="font-medium">
+						<img src={youtubeIcon} class="inline invert mr-1" width="16" alt="" />
+						{title}
+					</h3>
+				{:else}
+					<h3 class="font-medium">
+						<img src={playlistIcon} class="inline invert mr-1" width="16" alt="" />
+						{title}
+					</h3>
+				{/if}
+			</div>
+		{/if}
 
-	<!-- tags -->
-	<!-- <div class="flex flex-wrap space-x-2 text-xs">
+		<!-- tags -->
+		<!-- <div class="flex flex-wrap space-x-2 text-xs">
 			<span class="dark:text-neutral-400">Topics: </span>
 			<span class="dark:text-neutral-300">
 				{tags.join(', ')}
 			</span>
 		</div> -->
 
-	<!-- comment -->
-	{#if comment}
-		<div class="flex flex-wrap">
-			<!-- <span class="dark:text-neutral-400"> -->
-			<span class="font-adaptive dark:text-neutral-300 text-sm text-neutral-600">
-				{comment}
-			</span>
-			<!-- </span> -->
-		</div>
-	{/if}
+		<!-- comment -->
+		{#if comment}
+			<div class="flex flex-wrap">
+				<!-- <span class="dark:text-neutral-400"> -->
+				<span class="font-adaptive text-neutral-400">
+					{comment}
+				</span>
+				<!-- </span> -->
+			</div>
+		{/if}
+	</div>
 </a>

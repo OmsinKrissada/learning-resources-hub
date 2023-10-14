@@ -2,6 +2,9 @@
 	import Item from '../components/Item.svelte';
 	import Footer from '../components/Footer.svelte';
 
+	import youtubeIcon from '$lib/assets/youtube-icon-3.svg';
+	import playlistIcon from '$lib/assets/playlist-icon.svg';
+
 	export let data;
 
 	// type ResourceItem = {
@@ -16,19 +19,46 @@
 	// });
 </script>
 
+<div
+	class="mt-4 lg:mt-10 mb-4 p-6 lg:p-10 mx-4 xl:mx-0 bg-zinc-800 text-neutral-200 border border-zinc-600 rounded-lg"
+>
+	<h1 class="font-medium text-3xl">🙋‍♂️ Hello, it's Omsin, your friend!</h1>
+	<br />
+	<p>เราทำเว็บนี้ขึ้นหวังว่าจะเป็นประโยชน์สำหรับคนที่ต้องการหา resource เรียนเองจาก internet</p>
+	<p>
+		ซึ่ง resource ที่ใส่ไว้จะเป็น programming ที่โน้มไปทาง web dev เป็นส่วนใหญ่
+		คัดมาเฉพาะอันที่เราคิดว่าจะคุ้มค่ากับเวลา
+	</p>
+	<br />
+	<p class="">
+		Resource มีทั้งที่เป็น <img
+			src={youtubeIcon}
+			class="inline mx-1 mb-px invert"
+			width="16"
+			alt=""
+		/>
+		YouTube video, <img src={playlistIcon} class="inline mx-1 mb-px invert" width="16" alt="" />
+		YouTube playlist และ <strike>article</strike> (coming soon) โดยในแต่ละหมวดเราพยายามเรียงไว้ให้แล้ว
+		เพราะฉะนั้นถ้าไม่ได้สนใจคลิปไหนเป็นพิเศษจะดูเรียงเลยก็ได้
+	</p>
+	<br />
+	<p>Feel free to reach me on Discord (omsin.zip) should you have any questions.</p>
+	<p>Stay curious!</p>
+</div>
+
 <!-- <div class="flex flex-wrap space-x-6 space-y-6"> -->
 {#each data.items as [topic, list]}
 	<!-- <div class="flex flex-col"> -->
 	<section class="flex flex-col items-center sm:block mb-8">
 		<div class="z-10 sticky -top-px w-full pb">
 			<h2
-				class="px-4 xl:px-0 pt-4 bg-white dark:bg-neutral-900 font-medium text-xl md:text-3xl dark:text-neutral-200 border-b-2 border-neutral-300 dark:border-neutral-600"
+				class="px-4 xl:px-0 pt-4 pb-2 bg-zinc-900 text-xl md:text-2xl text-neutral-100 border-b border-zinc-600"
 			>
 				{topic}
 			</h2>
 		</div>
 		<!-- <div class="grid gap-8 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"> -->
-		<div class="mx-auto my-6 px-4 xl:px-0 grid grid-cols-[repeat(auto-fit,300px)] gap-6">
+		<div class="mx-auto my-6 px-4 xl:px-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
 			{#each list as item}
 				<Item
 					url={item.url}

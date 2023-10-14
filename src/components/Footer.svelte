@@ -2,9 +2,7 @@
 	import svelteLogo from '$lib/assets/svelte_logo.svg';
 </script>
 
-<footer
-	class="py-6 text-center text-neutral-600 dark:text-neutral-400 border-t border-neutral-300 dark:border-neutral-600"
->
+<footer class="py-6 text-center text-neutral-400 border-t border-neutral-600">
 	<span>Content Collected With ♥️</span>
 	<span class="px-2 text-neutral-400 dark:text-neutral-600">•</span>
 	<span>
