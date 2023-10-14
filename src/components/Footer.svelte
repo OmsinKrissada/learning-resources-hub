@@ -2,9 +2,11 @@
 	import svelteLogo from '$lib/assets/svelte_logo.svg';
 </script>
 
-<footer class="py-6 text-center text-neutral-400 border-t border-neutral-600">
+<footer
+	class="flex flex-col md:flex-row justify-center gap-4 py-6 text-center text-neutral-400 border-t border-neutral-600"
+>
 	<span>Content Collected With ♥️</span>
-	<span class="px-2 text-neutral-400 dark:text-neutral-600">•</span>
+	<span class="hidden md:inline px-2 text-neutral-400 dark:text-neutral-600">•</span>
 	<span>
 		Website Made With <a href="https://kit.svelte.dev"
 			><img class="inline w-4 mx-1" src={svelteLogo} alt="SvelteKit" /></a
