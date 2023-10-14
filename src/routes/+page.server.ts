@@ -25,7 +25,8 @@ export async function load({ fetch }) {
 				return {
 					...item,
 					title: item.title,
-					thumbnailUrl: item.thumbnailUrl || globeIcon
+					thumbnailUrl: item.thumbnailUrl || globeIcon,
+					noShadow: !item.thumbnailUrl
 				};
 			} else {
 				const res = await fetch(`https://krissada.com/getmetatags.php?url=${item.url}`);
@@ -34,7 +35,8 @@ export async function load({ fetch }) {
 					...item,
 					title: metaTags['og:title'],
 					// thumbnailUrl: `https://i.ytimg.com/vi/${item.url.split('=')[1]}/maxresdefault.jpg`
-					thumbnailUrl: metaTags['og:image']
+					thumbnailUrl: metaTags['og:image'],
+					noShadow: false
 				};
 			}
 		});

@@ -2,14 +2,13 @@
 	import youtubeIcon from '$lib/assets/youtube-icon-3.svg';
 	import playlistIcon from '$lib/assets/playlist-icon.svg';
 	import articleIcon from '$lib/assets/article-icon.svg';
-	import globeIcon from '$lib/assets/globe-icon.svg';
 	import { typeFromUrl } from '$lib/helper';
-	// export let type: 'video' | 'playlist' | 'channel';
-	// export let tags: string[];
+
 	export let title: string;
 	export let url: string;
 	export let thumbnailUrl: string;
 	export let comment: string | undefined;
+	export let noShadow: boolean;
 
 	let type = typeFromUrl(url);
 </script>
@@ -21,9 +20,9 @@
 	<img
 		src={thumbnailUrl}
 		alt=""
-		class="h-16 rounded-lg aspect-video object-cover shadow-lg shadow-zinc-700"
+		class="h-16 rounded-lg aspect-video object-cover shadow-zinc-700"
 		class:object-fill={type === 'article'}
-		class:shadow-lg={thumbnailUrl !== globeIcon}
+		class:shadow-lg={!noShadow}
 	/>
 
 	<div class="h-full ml-4 text-sm text-neutral-200">

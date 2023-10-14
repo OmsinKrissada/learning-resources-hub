@@ -1,23 +1,11 @@
 <script lang="ts">
 	import Item from '../components/Item.svelte';
-	import Footer from '../components/Footer.svelte';
 
 	import youtubeIcon from '$lib/assets/youtube-icon-3.svg';
 	import playlistIcon from '$lib/assets/playlist-icon.svg';
 	import articleIcon from '$lib/assets/article-icon.svg';
 
 	export let data;
-
-	// type ResourceItem = {
-	// 	type: 'channel' | 'playlist' | 'video';
-	// 	url: string;
-	// 	tags: string[];
-	// 	comment?: string;
-	// };
-
-	// onMount(async () => {
-	// 	items = (await axios.get('https://krissada.com/api/resources.php')).data;
-	// });
 </script>
 
 <div
@@ -42,9 +30,7 @@
 	<p>Stay curious!</p>
 </div>
 
-<!-- <div class="flex flex-wrap space-x-6 space-y-6"> -->
 {#each data.items as [topic, list]}
-	<!-- <div class="flex flex-col"> -->
 	<section class="flex flex-col items-center sm:block mb-8">
 		<div class="z-10 sticky -top-px w-full pb">
 			<h2
@@ -63,12 +49,9 @@
 					title={item.title}
 					thumbnailUrl={item.thumbnailUrl}
 					comment={item.comment}
+					noShadow={item.noShadow}
 				/>
 			{/each}
 		</div>
 	</section>
-
-	<!-- </div> -->
 {/each}
-<!-- <ChannelItem v-for="i in playlists" type="playlist" :url="i.url" :tags="i.tags" class="h-fit w-full" />
-		  <ChannelItem v-for="i in vids" type="video" :url="i.url" :tags="i.tags" class="h-fit w-full" /> -->
